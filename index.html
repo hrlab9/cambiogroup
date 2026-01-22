@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CamBio Group - Portafolio 2024 | Bioconstrucción Sostenible</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Variables Sass simuladas en CSS */
+        :root {
+            --primary-green: #2E7D32;
+            --secondary-green: #4CAF50;
+            --light-green: #C8E6C9;
+            --dark-green: #1B5E20;
+            --earth-brown: #8D6E63;
+            --clay-orange: #FF9800;
+            --sand-beige: #FFE0B2;
+            --stone-gray: #757575;
+            --dark-gray: #424242;
+            --white: #FFFFFF;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--dark-gray);
+            line-height: 1.7;
+            background-color: #f9f9f9;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: var(--dark-green);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header y Navegación */
+        header {
+            background: linear-gradient(135deg, var(--dark-green) 0%, var(--primary-green) 100%);
+            color: var(--white);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 12px 0;
+            background: rgba(43, 86, 44, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo .material-icons {
+            margin-right: 10px;
+            font-size: 2.2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: 30px;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--light-green);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 180px 0 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 65%, rgba(46, 125, 50, 0.2) 100%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--white);
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary-green);
+            color: var(--white);
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            animation: fadeInUp 1s ease 0.4s both;
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-green);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(76, 175, 80, 0.4);
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--white);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-green), var(--secondary-green));
+            transition: width 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .card:hover::before {
+            width: 8px;
+        }
+
+        .card h3 {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .card h3::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary-green);
+        }
+
+        /* Secciones */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-green), var(--secondary-green));
+            border-radius: 2px;
+        }
+
+        /* Misión y Visión */
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .mission-card, .vision-card {
+            background: linear-gradient(135deg, var(--white) 0%, #f5f5f5 100%);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .mission-card::before, .vision-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-green), var(--secondary-green));
+            border-radius: 15px 15px 0 0;
+        }
+
+        .mission-card:hover, .vision-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .mission-card .icon, .vision-card .icon {
+            font-size: 3rem;
+            color: var(--primary-green);
+            margin-bottom: 20px;
+        }
+
+        /* Quiénes Somos */
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+        }
+
+        .about-highlight {
+            background-color: rgba(200, 230, 201, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 5px solid var(--secondary-green);
+        }
+
+        /* Materias Primas */
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .material-item {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .material-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: var(--earth-brown);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .material-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .material-item:hover {
+            transform: translateY(-8px);
+        }
+
+        .material-icon {
+            font-size: 2.5rem;
+            color: var(--earth-brown);
+            margin-bottom: 15px;
+        }
+
+        /* Productos */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            height: 200px;
+            background-color: var(--sand-beige);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--stone-gray);
+        }
+
+        .product-content {
+            padding: 25px;
+        }
+
+        .product-tag {
+            display: inline-block;
+            background-color: var(--light-green);
+            color: var(--dark-green);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        /* Comparativa BioBlock vs Tradicional */
+        .comparison {
+            background-color: rgba(200, 230, 201, 0.2);
+            padding: 60px 0;
+            border-radius: 20px;
+            margin-top: 40px;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .comparison-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            position: relative;
+        }
+
+        .bio-block {
+            border-top: 5px solid var(--secondary-green);
+        }
+
+        .traditional-block {
+            border-top: 5px solid var(--stone-gray);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin: 15px 0;
+        }
+
+        .traditional-block .stat-number {
+            color: var(--stone-gray);
+        }
+
+        /* Dashboard de Impacto */
+        .impact-dashboard {
+            background: linear-gradient(135deg, var(--dark-green) 0%, var(--primary-green) 100%);
+            color: var(--white);
+            padding: 60px 0;
+            border-radius: 20px;
+            margin-top: 40px;
+        }
+
+        .dashboard-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--white);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .dashboard-item {
+            text-align: center;
+            padding: 25px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .dashboard-item:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .dashboard-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .dashboard-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        /* Equipo */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .team-member {
+            text-align: center;
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .member-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: var(--light-green);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            color: var(--dark-green);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-green);
+            color: var(--white);
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            color: var(--white);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-green);
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .contact-info .material-icons {
+            margin-right: 10px;
+            color: var(--light-green);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Efectos y Animaciones */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease both;
+        }
+
+        .stagger-delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .stagger-delay-2 {
+            animation-delay: 0.2s;
+        }
+
+        .stagger-delay-3 {
+            animation-delay: 0.3s;
+        }
+
+        .stagger-delay-4 {
+            animation-delay: 0.4s;
+        }
+
+        /* Efecto de partículas para el tema bio */
+        .bio-particle {
+            position: absolute;
+            background-color: rgba(76, 175, 80, 0.2);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                background: none;
+                border: none;
+                color: var(--white);
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+        }
+
+        /* Scroll animation */
+        .reveal {
+            position: relative;
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Gráficos */
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="main-header">
+        <div class="container header-content">
+            <div class="logo">
+                <i class="material-icons">eco</i>
+                <span>CamBio GROUP</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#mision-vision">Misión & Visión</a></li>
+                    <li><a href="#quienes-somos">Quiénes Somos</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#impacto">Impacto</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-btn">
+                <i class="material-icons">menu</i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <h1>CamBio GROUP</h1>
+            <p>Liderando la transformación del sector de la bioconstrucción mediante soluciones innovadoras y sostenibles desde Cali, Colombia</p>
+            <a href="#productos" class="cta-button">Descubre Nuestros Productos</a>
+        </div>
+    </section>
+
+    <!-- Misión y Visión -->
+    <section id="mision-vision">
+        <div class="container">
+            <div class="section-title">
+                <h2>Misión & Visión</h2>
+            </div>
+            <div class="mission-vision">
+                <div class="mission-card fade-in">
+                    <div class="icon">
+                        <i class="material-icons">flag</i>
+                    </div>
+                    <h3>Misión</h3>
+                    <p>Liderar la transformación del sector de la bioconstrucción mediante la oferta de soluciones innovadoras y sostenibles. Nos comprometemos a proporcionar productos de alta calidad que no solo cumplan con los estándares técnicos más exigentes, sino que también impulsen un CamBio positivo en la forma en que se construye el mundo.</p>
+                </div>
+                <div class="vision-card fade-in stagger-delay-1">
+                    <div class="icon">
+                        <i class="material-icons">visibility</i>
+                    </div>
+                    <h3>Visión</h3>
+                    <p>Para el año 2030, seremos la principal entidad en el mercado de bioconstrucción, destacándonos no solo por la excelencia de nuestros productos, sino también por ser pioneros en investigación e innovación. Nos esforzamos por ser un referente mundial en el desarrollo sostenible, brindando soluciones avanzadas que redefinan los estándares de la industria.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiénes Somos -->
+    <section id="quienes-somos" class="reveal">
+        <div class="container">
+            <div class="section-title">
+                <h2>Quiénes Somos</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Ubicados en Cali, Colombia con cobertura Nacional. CamBio se especializa en soluciones constructivas sustentables basadas en economía circular. Nos dedicamos a construir no solo estructuras de alta calidad, sino también experiencias memorables.</p>
+                    <p>Priorizamos la sostenibilidad mediante prácticas responsables y eficientes, incluyendo la reutilización de materiales, comprometidos con la dedicación en cada proyecto contribuyendo a un futuro mejor.</p>
+                    <div class="about-highlight">
+                        <h4>Patente de Invención</h4>
+                        <p>"MATERIAL COMPUESTO OBTENIDO A PARTIR DE RESIDUOS AGROINDUSTRIALES Y MATERIALES RECICLADOS CON ALTO CONTENIDO DE FIBRA ORGÁNICA"</p>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="chart-container">
+                        <canvas id="processChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proceso y Productos -->
+    <section id="proceso" class="reveal">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestro Proceso Sostenible</h2>
+            </div>
+            <div class="mission-vision">
+                <div class="card">
+                    <h3><i class="material-icons">recycling</i> Aprovechamiento de Residuos</h3>
+                    <p>Generamos el aprovechamiento de residuos agroindustriales: Fibras orgánicas, Cascarillas, Carbonillas y lodos, Polímeros.</p>
+                </div>
+                <div class="card">
+                    <h3><i class="material-icons">category</i> Desarrollo de Bioproductos</h3>
+                    <p>Desarrollamos una variedad de Bioproductos acorde a la necesidad de los clientes: Productos Secos, Bloques de construcción.</p>
+                </div>
+                <div class="card">
+                    <h3><i class="material-icons">verified</i> Garantía Técnica</h3>
+                    <p>Garantizamos características técnicas y normativas de resistencia, densidad y termoacústica.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Materias Primas -->
+    <section id="materias-primas" class="reveal">
+        <div class="container">
+            <div class="section-title">
+                <h2>Materias Primas Sostenibles</h2>
+            </div>
+            <div class="materials-grid">
+                <div class="material-item fade-in">
+                    <div class="material-icon">
+                        <i class="material-icons">grass</i>
+                    </div>
+                    <h4>Polvillo de Bagazo de Caña</h4>
+                    <p>Aporta volumen a los productos</p>
+                </div>
+                <div class="material-item fade-in stagger-delay-1">
+                    <div class="material-icon">
+                        <i class="material-icons">spa</i>
+                    </div>
+                    <h4>Cascara de Sacha Inchi</h4>
+                    <p>Genera espacios de aire para bajar peso en los productos</p>
+                </div>
+                <div class="material-item fade-in stagger-delay-2">
+                    <div class="material-icon">
+                        <i class="material-icons">eco</i>
+                    </div>
+                    <h4>Tallo de Cannabis</h4>
+                    <p>Otorga consistencia y amarre en los productos</p>
+                </div>
+                <div class="material-item fade-in stagger-delay-3">
+                    <div class="material-icon">
+                        <i class="material-icons">whatshot</i>
+                    </div>
+                    <h4>Carbonilla - Lodo</h4>
+                    <p>Aprovechamiento para dar cargas a los productos</p>
+                </div>
+                <div class="material-item fade-in stagger-delay-4">
+                    <div class="material-icon">
+                        <i class="material-icons">filter_vintage</i>
+                    </div>
+                    <h4>Concha de Coco</h4>
+                    <p>Aprovechamiento para dar cargas a los productos - Agregado</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Productos -->
+    <section id="productos" class="reveal">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestros Productos</h2>
+            </div>
+            
+            <div class="card" style="margin-bottom: 40px;">
+                <h3><i class="material-icons">precision_manufacturing</i> Bioblock</h3>
+                <p>Bloque cementicio elaborado con fibras orgánicas, áridos (arenas), aditivo hiperplastificante, componente hidrófugo y bajo componente de cemento. Actualmente producido de manera artesanal. Cumple normativas de construcción 1200 PSI x m³</p>
+            </div>
+            
+            <div class="card" style="margin-bottom: 40px;">
+                <h3><i class="material-icons">format_paint</i> Línea de Secos</h3>
+                <p>Productos desarrollados con biocomponentes para uso posterior a la mampostería y acabado final (obra blanca). Optimiza los tiempos de aplicación y genera mayor rendimiento en cantidades de materiales requeridos por metro cuadrado.</p>
+                <div class="products-grid" style="margin-top: 20px;">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <i class="material-icons">construction</i>
+                        </div>
+                        <div class="product-content">
+                            <span class="product-tag">Biomortero</span>
+                            <h4>Utilizado para acabado de mampostería o concreto estampado (contiene fibras orgánicas)</h4>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <i class="material-icons">content_cut</i>
+                        </div>
+                        <div class="product-content">
+                            <span class="product-tag">Biopega</span>
+                            <h4>Empleada para pegar los bloques (contiene fibras orgánicas)</h4>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <i class="material-icons">dashboard</i>
+                        </div>
+                        <div class="product-content">
+                            <span class="product-tag">Bioquartz</span>
+                            <h4>Mezcla empleada para elaboración de mesones, pisos, salpicaderos y acabados para fachadas (contiene fibras orgánicas)</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Concepto Integrado -->
+    <section class="reveal">
+        <div class="container">
+            <div class="card">
+                <h3><i class="material-icons">public</i> Concepto Integral</h3>
+                <p>Generamos un concepto integrando impacto ambiental, social y económico. Uso de residuos orgánicos e industriales desarrollando procesos de economía circular y apoyando las agendas ambientales organizacionales.</p>
+                
+                <div class="chart-container" style="margin-top: 30px;">
+                    <canvas id="impactChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparativa -->
+    <section class="comparison reveal">
+        <div class="container">
+            <div class="section-title">
+                <h2>Comparativa: BioBlock vs Bloque Tradicional</h2>
+            </div>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card bio-block">
+                    <h3>BioBlock</h3>
+                    <div class="stat-number">-30%</div>
+                    <p>en tiempo de elevación de muro</p>
+                    <div style="margin: 20px 0; padding: 15px; background-color: rgba(200, 230, 201, 0.5); border-radius: 10px;">
+                        <p><strong>Composición Cemento: 20%</strong></p>
+                        <p><strong>Bloques por m²: 6</strong></p>
+                    </div>
+                    <p>Acabados requeridos: BioPega ladrillo, Estuco</p>
+                </div>
+                
+                <div class="comparison-card traditional-block">
+                    <h3>Bloque Tradicional</h3>
+                    <div class="stat-number">+50%</div>
+                    <p>más tiempo de construcción</p>
+                    <div style="margin: 20px 0; padding: 15px; background-color: rgba(117, 117, 117, 0.1); border-radius: 10px;">
+                        <p><strong>Composición Cemento: 50%</strong></p>
+                        <p><strong>Bloques por m²: 15</strong></p>
+                    </div>
+                    <p>Acabados requeridos: Pega ladrillo, Varilla de media cada 20 cm, Repello o argamasa, Estuco</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard de Impacto -->
+    <section id="impacto" class="reveal">
+        <div class="container">
+            <div class="section-title">
+                <h2>Impacto y Reconocimientos</h2>
+            </div>
+            
+            <div class="impact-dashboard">
+                <div class="dashboard-title">
+                    <h3>Nuestro Impacto Medible</h3>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="dashboard-item">
+                        <div class="dashboard-icon">
+                            <i class="material-icons">emoji_events</i>
+                        </div>
+                        <h4>Ganadores 2017</h4>
+                        <p>Convocatoria de innovación Cali Sostenible</p>
+                    </div>
+                    
+                    <div class="dashboard-item">
+                        <div class="dashboard-icon">
+                            <i class="material-icons">handshake</i>
+                        </div>
+                        <h4>Alianza 2018</h4>
+                        <p>Alianza por la innovación: prototipado Banca Solar</p>
+                    </div>
+                    
+                    <div class="dashboard-item">
+                        <div class="dashboard-icon">
+                            <i class="material-icons">corporate_fare</i>
+                        </div>
+                        <h4>Fortalecimiento</h4>
+                        <p>Fundación Carvajal: Fortalecimiento empresarial</p>
+                    </div>
+                    
+                    <div class="dashboard-item">
+                        <div class="dashboard-icon">
+                            <i class="material-icons">trending_up</i>
+                        </div>
+                        <h4>Estandarización</h4>
+                        <p>Estandarización e industrialización proceso productivo</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mission-vision" style="margin-top: 40px;">
+                <div class="card">
+                    <h4><i class="material-icons">science</i> Desarrollo de Patentes</h4>
+                    <p>Desarrollo patentes productos secos</p>
+                </div>
+                <div class="card">
+                    <h4><i class="material-icons">group_work</i> Alianzas Estratégicas</h4>
+                    <p>Generación alianzas estratégicas de suministro y comercialización</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipo -->
+    <section class="reveal">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestro Equipo</h2>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image">
+                        <i class="material-icons">engineering</i>
+                    </div>
+                    <h3>Diego Burbano</h3>
+                    <p><strong>Director de Operaciones</strong></p>
+                    <p>Diseñador Gráfico. Investigación y Desarrollo de Biomateriales. Innovación en nuevos desarrollos.</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <i class="material-icons">biotech</i>
+                    </div>
+                    <h3>Adriana P. Cardona</h3>
+                    <p><strong>Directora de I&D</strong></p>
+                    <p>Diseñadora Gráfica. Nuevos desarrollos e implementación de líneas de producción sostenibles.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <footer id="contacto" class="reveal">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <div class="contact-info">
+                        <i class="material-icons">phone</i>
+                        <span>312 857 8076</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="material-icons">phone</i>
+                        <span>316 648 2255</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="material-icons">email</i>
+                        <span>cambio.group17@gmail.com</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="material-icons">location_on</i>
+                        <span>Cali - Colombia</span>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Enfoque</h4>
+                    <p>Desarrollos enfocados en la INNOVACIÓN y ECONOMÍA COLABORATIVA bajo esquemas de COCREACIÓN para la creación e introducción de PRODUCTOS DIFERENCIALES.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>CamBio GROUP</h4>
+                    <p>Liderando la bioconstrucción sostenible desde Cali, Colombia. Transformando residuos en soluciones constructivas de alta calidad.</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2024 CamBio GROUP. Todos los derechos reservados. Portafolio 2024 Cali.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Efecto de partículas para el tema bio
+        function createParticles() {
+            const colors = ['#2E7D32', '#4CAF50', '#8D6E63', '#C8E6C9'];
+            const particlesContainer = document.createElement('div');
+            particlesContainer.style.position = 'fixed';
+            particlesContainer.style.top = '0';
+            particlesContainer.style.left = '0';
+            particlesContainer.style.width = '100%';
+            particlesContainer.style.height = '100%';
+            particlesContainer.style.pointerEvents = 'none';
+            particlesContainer.style.zIndex = '-1';
+            document.body.appendChild(particlesContainer);
+            
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('bio-particle');
+                
+                const size = Math.random() * 20 + 5;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.backgroundColor = color;
+                particle.style.opacity = Math.random() * 0.3 + 0.1;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                particlesContainer.appendChild(particle);
+                
+                // Animación flotante
+                animateParticle(particle);
+            }
+        }
+        
+        function animateParticle(particle) {
+            let x = parseFloat(particle.style.left);
+            let y = parseFloat(particle.style.top);
+            let xSpeed = (Math.random() - 0.5) * 0.2;
+            let ySpeed = (Math.random() - 0.5) * 0.2;
+            
+            function move() {
+                x += xSpeed;
+                y += ySpeed;
+                
+                // Rebotar en los bordes
+                if (x <= 0 || x >= 100) xSpeed *= -1;
+                if (y <= 0 || y >= 100) ySpeed *= -1;
+                
+                particle.style.left = `${x}%`;
+                particle.style.top = `${y}%`;
+                
+                requestAnimationFrame(move);
+            }
+            
+            move();
+        }
+        
+        // Scroll animations
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 100;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+        
+        // Header scroll effect
+        function headerScrollEffect() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }
+        
+        // Smooth scrolling para navegación
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#inicio') {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+        
+        // Gráficos
+        function initCharts() {
+            // Gráfico de proceso
+            const processCtx = document.getElementById('processChart').getContext('2d');
+            const processChart = new Chart(processCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Residuos Agroindustriales', 'Fibras Orgánicas', 'Materiales Reciclados', 'Proceso Artesanal'],
+                    datasets: [{
+                        data: [35, 25, 25, 15],
+                        backgroundColor: [
+                            '#2E7D32',
+                            '#4CAF50',
+                            '#8D6E63',
+                            '#C8E6C9'
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#fff',
+                            bodyColor: '#fff'
+                        }
+                    }
+                }
+            });
+            
+            // Gráfico de impacto
+            const impactCtx = document.getElementById('impactChart').getContext('2d');
+            const impactChart = new Chart(impactCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Ambiental', 'Social', 'Económico'],
+                    datasets: [{
+                        label: 'Impacto',
+                        data: [85, 75, 80],
+                        backgroundColor: [
+                            'rgba(46, 125, 50, 0.7)',
+                            'rgba(76, 175, 80, 0.7)',
+                            'rgba(141, 110, 99, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(46, 125, 50, 1)',
+                            'rgba(76, 175, 80, 1)',
+                            'rgba(141, 110, 99, 1)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            initCharts();
+            
+            // Event listeners
+            window.addEventListener('scroll', () => {
+                revealOnScroll();
+                headerScrollEffect();
+            });
+            
+            // Trigger inicial
+            revealOnScroll();
+            headerScrollEffect();
+            
+            // Efecto hover para tarjetas de materiales
+            document.querySelectorAll('.material-item').forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
